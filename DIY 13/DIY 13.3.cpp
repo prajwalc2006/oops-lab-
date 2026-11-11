@@ -8,6 +8,7 @@ mutex counterMutex;
 
 void addSafely(int times) {
     for (int i = 0; i < times; ++i) {
+        // Remove the guard to observe the data race; keep it for the correct total.
         lock_guard<mutex> lock(counterMutex);
         ++counter;
     }
